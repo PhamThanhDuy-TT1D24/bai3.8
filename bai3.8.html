@@ -1,0 +1,102 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+    <meta charset="UTF-8">
+    <title>Bài 3.8</title> 
+    <script type="text/javascript"> 
+        function hienthi() { 
+            // Lấy giá trị từ form
+            let hoten = document.formdn.hoten.value.trim();
+            let matkhau = document.formdn.matkhau.value;
+            let isValid = true; 
+
+            // Xóa thông báo cũ 
+            document.getElementById("user").innerHTML = ""; 
+            document.getElementById("pass").innerHTML = ""; 
+
+            // Kiểm tra Họ tên
+            if (hoten === "") { 
+                document.getElementById("user").innerHTML = "Bạn chưa nhập tên đăng nhập"; 
+                document.formdn.hoten.focus(); 
+                isValid = false; 
+            } 
+
+            // Kiểm tra Mật khẩu
+            if (matkhau === "") { 
+                document.getElementById("pass").innerHTML = "Bạn chưa nhập mật khẩu"; 
+                if (isValid) document.formdn.matkhau.focus(); 
+                isValid = false; 
+            } else if (matkhau.length < 8) { 
+                // Sửa lỗi: Ghép chuỗi trên cùng 1 dòng và cập nhật 8 ký tự theo hình ảnh
+                document.getElementById("pass").innerHTML = "Mật khẩu phải từ 8 ký tự trở lên"; 
+                if (isValid) document.formdn.matkhau.focus(); 
+                isValid = false; 
+            } 
+
+            // Thông báo thành công
+            if (isValid) { 
+                alert("Đăng nhập thành công!"); 
+
+                document.formdn.reset(); 
+
+                document.formdn.hoten.focus();
+            } 
+        } 
+    </script> 
+    <style type="text/css"> 
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            padding-top: 50px;
+        }
+        table { 
+            background-color: #f0f0f0; 
+            padding: 20px; 
+            border-collapse: separate;
+            border-spacing: 10px;
+            border: 1px solid #ccc;
+            width: 30% px;
+        } 
+        th { 
+            height: 40px; 
+            font-size: 20px;
+        } 
+        label { 
+            color: red; 
+            font-size: 13px; 
+            white-space: nowrap;
+        } 
+        input[type="text"], input[type="password"] {
+            width: 180px;
+        }
+    </style> 
+</head> 
+
+<body> 
+    <form name="formdn"> 
+        <table align="center"> 
+            <tr> 
+                <th colspan="3">ĐĂNG NHẬP</th> 
+            </tr> 
+            <tr> 
+                <td width="80px">Họ tên</td> 
+                <td width="190px"><input type="text" name="hoten" id="hoten" autofocus></td> 
+                <td><label id="user"></label></td> 
+            </tr> 
+            <tr> 
+                <td>Mật khẩu</td> 
+                <td><input type="password" name="matkhau" id="matkhau"></td> 
+                <td><label id="pass"></label></td> 
+            </tr> 
+            <tr> 
+                <td></td> 
+                <td>
+                    <input type="button" id="nhap" value="Đăng nhập" onclick="hienthi();"> 
+                </td> 
+                <td></td> 
+            </tr> 
+        </table> 
+    </form> 
+</body> 
+</html>
